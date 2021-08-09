@@ -32,6 +32,29 @@ class UserFactory extends Factory
     }
 
     /**
+     * @return array State alterations for random API user
+     */
+    public function APIUser()
+    {
+        return [
+            'api_token' => Str::random(60),
+            'api_limit' => 1000,
+        ];
+    }
+
+    /**
+     * @return array State alterations for demo user with known API token, made for testing API
+     */
+    public function DemoAPIUser()
+    {
+        return [
+            'name' => 'Demo User',
+            'email' => 'demo@demoapiuser.com',
+            'api_token' => "xuusogercnjpzsvyqznfyuceqczpidamjsezxsxwykppudhzgmtgnoxpgahf",
+        ];
+    }
+
+    /**
      * Indicate that the model's email address should be unverified.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
