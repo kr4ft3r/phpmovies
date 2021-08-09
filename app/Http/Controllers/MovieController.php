@@ -4,26 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Movie;
+
 class MovieController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Return JSON listing of movies
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return Movie::all()->toJson();;
+    }
+
+    /**
+     * Return JSON of the specified movie
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $movie = Movie::where('id', $id)->first();
+        if(!$movie) return response()->json(['error' => 'Movie not found'], 404);
+        return $movie->toJson();
     }
 
     public function getByCategory(Request $request, $category)
     {
-
+        return Movie::where('category', urldecode($category))->get()->toJson();
     }
 
     public function getByTitle(Request $request, $title)
     {
-
+        return Movie::where('title', 'LIKE', '%'.urldecode($title).'%')->get()->toJson();
     }
 
     /**
@@ -33,17 +48,6 @@ class MovieController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
     {
         //
     }

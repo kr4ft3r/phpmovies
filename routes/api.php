@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MovieController;
 
-Route::group(['prefix'=>'/api/v1/movies', 'middleware'=>'auth:api'], function() {
-    Route::post('/category/{category}', [MovieController::class, 'getByCategory'])->name('api.movies.category');
-    Route::post('/title/{title}', [MovieController::class, 'getByTitle'])->name('api.movies.title');
-    Route::resource('movies', MovieController::class)->names(
+Route::group(['prefix'=>'/v1', 'middleware'=>'auth:api'], function() {
+    Route::post('/movies/category/{category}', [MovieController::class, 'getByCategory'])->name('api.movies.category');
+    Route::post('/movies/title/{title}', [MovieController::class, 'getByTitle'])->name('api.movies.title');
+    Route::resource('movies', MovieController::class, ['except' => ['store','update','destroy']])->names(
         [
             'index' => 'api.movies',
             'show' => 'api.movies.show'
