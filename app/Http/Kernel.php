@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\CheckUserRequestLimit::class, // Check if user spent requests
+            \App\Http\Middleware\ReduceUserRequestLimit::class, // Reduce user request limit by 1
         ],
     ];
 

@@ -22,6 +22,9 @@ class APIRoutesUnauthorizedTest extends TestCase
         $this->get(route('api.movies'))->assertStatus(401);
     }
 
+    /**
+     * Confirm that user with api_limit lower than 1 cannot access API
+     */
     public function test_user_without_requests_cannot_access_api()
     {
         $user = $user = User::factory()->APIUser()->NoMoreAPIAccess()->create();
