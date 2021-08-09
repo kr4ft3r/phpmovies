@@ -13,4 +13,11 @@ class APIRoutesTest extends TestCase
         $this->assertTrue(Route::has('api.movies'));
     }
 
+    public function test_api_index_route()
+    {
+        $this->post(route('api.movies.index'), [
+            
+        ]);
+    }
+
 }

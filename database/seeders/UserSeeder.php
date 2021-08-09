@@ -17,7 +17,5 @@ class UserSeeder extends Seeder
     {
         // Demo API user, api_key=xuusogercnjpzsvyqznfyuceqczpidamjsezxsxwykppudhzgmtgnoxpgahf
         User::factory()->APIUser()->DemoAPIUser()->create();
-        // Random API user pool
-        User::factory()->count(10)->APIUser()->create();
     }
 }

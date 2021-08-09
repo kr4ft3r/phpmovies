@@ -23,7 +23,7 @@ class MovieFactory extends Factory
     {
         return [
             'reference_code' => $this->faker->unique()->numerify('#########'),
-            'title' => $this->faker->unique()->words(2),
+            'title' => $this->faker->text(20),
             'category' => $this->faker->randomElement(['action','drama','comedy','documentary']),
             'image' => $this->faker->imageUrl(),
             'year_of_making' => $this->faker->year('now'),

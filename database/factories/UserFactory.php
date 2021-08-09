@@ -32,26 +32,32 @@ class UserFactory extends Factory
     }
 
     /**
-     * @return array State alterations for random API user
+     * State alterations for random API user
+     * @return UserFactory
      */
     public function APIUser()
     {
-        return [
-            'api_token' => Str::random(60),
-            'api_limit' => 1000,
-        ];
+        return $this->state(
+            [
+                'api_token' => $this->faker->unique()->regexify('[A-Za-z0-9]{60}'), //Str::random(60),
+                'api_limit' => 1000,
+            ]
+        );
     }
 
     /**
-     * @return array State alterations for demo user with known API token, made for testing API
+     * State alterations for demo user with known API token, made for testing API
+     * @return UserFactory
      */
     public function DemoAPIUser()
     {
-        return [
-            'name' => 'Demo User',
-            'email' => 'demo@demoapiuser.com',
-            'api_token' => "xuusogercnjpzsvyqznfyuceqczpidamjsezxsxwykppudhzgmtgnoxpgahf",
-        ];
+        return $this->state(
+            [
+                'name' => 'Demo User',
+                'email' => 'demo@demoapiuser.com',
+                'api_token' => "xuusogercnjpzsvyqznfyuceqczpidamjsezxsxwykppudhzgmtgnoxpgahf",
+            ]
+        );
     }
 
     /**
