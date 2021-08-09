@@ -31,11 +31,25 @@ class MovieController extends Controller
         return $movie->toJson();
     }
 
+    /**
+     * Return JSON listing of movies in specified category
+     *
+     * @param Request $request
+     * @param $category
+     * @return mixed
+     */
     public function getByCategory(Request $request, $category)
     {
         return Movie::where('category', urldecode($category))->get()->toJson();
     }
 
+    /**
+     * Return JSON listing of movies with title containing search term
+     *
+     * @param Request $request
+     * @param $title
+     * @return mixed
+     */
     public function getByTitle(Request $request, $title)
     {
         return Movie::where('title', 'LIKE', '%'.urldecode($title).'%')->get()->toJson();
