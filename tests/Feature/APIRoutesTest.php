@@ -30,7 +30,7 @@ class APIRoutesTest extends TestCase
 
     protected function getBearerToken()
     {
-        $user = $user = User::factory()->APIUser()->create();
+        $user = User::factory()->APIUser()->create();
         return $user->api_token;
     }
 
