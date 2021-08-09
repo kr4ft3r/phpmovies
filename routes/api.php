@@ -3,17 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+use App\Http\Controllers\MovieController;
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix'=>'/api/v1/movies', 'middleware'=>'auth:api'], function() {
+    Route::post('/category/{category}', [MovieController::class, 'getByCategory'])->name('api.movies.category');
+    Route::post('/title/{title}', [MovieController::class, 'getByTitle'])->name('api.movies.title');
+    Route::resource('movies', MovieController::class)->names(
+        [
+            'index' => 'api.movies',
+            'show' => 'api.movies.show'
+        ]
+    );
 });
