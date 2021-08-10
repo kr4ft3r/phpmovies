@@ -14,7 +14,17 @@ U tom slučaju API može da se poziva putem korisnika sa poznatim api_key: ```xu
 
 ### Testiranje sa pokretanjem testova
 
-```php artisan test```
+```
+cp .env .env.testing # APP_ENV=testing # uneti detalje za test bazu
+php artisan test
+```
+
+### Mesta za poboljšanja
+* Category može biti model (id,slug,name) sa one-to-many relationship sa Movie i sa seeder-om, lako ću to ubaciti ako treba
+* Proveravanje i oduzimanje dostupnog broja zahteva može biti jedan middleware umesto dva kao sada
+* Pretraga po naslovu vraća listu što smatram da je praktičnije (LIKE query), ako treba mogu da promenim da vrati jedan resurs
+* Komentari su na engleskom kao što sam navikao da je praktičnije, ne znam kakva je praksa kod Vas po tom pitanju
+* Bilo šta drugo što predložite
 
 ### API rute
 
